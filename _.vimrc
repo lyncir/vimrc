@@ -154,3 +154,9 @@ map <leader>n :NERDTreeToggle<CR>
 " checker: pep8, pyflakes and co. https://github.com/nvie/vim-flake8.git
 " usage: \8
 autocmd FileType python map <leader>8 :call Flake8()<CR>
+
+" Ctrl-p
+" super searching. https://github.com/ctrlpvim/ctrlp.vim
+" usage: ctrl-p
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = 'ra'
