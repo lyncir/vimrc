@@ -132,7 +132,6 @@ map <c-h> <c-w>h
 " usage: \td
 map <leader>td <Plug>TaskList
 
-
 """""""""""""""""""""""""""""
 " Revision History
 """""""""""""""""""""""""""""
