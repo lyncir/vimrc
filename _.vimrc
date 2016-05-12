@@ -5,21 +5,21 @@
 " 关闭 vi 兼容模式
 set nocompatible
 
-" 自动语法高亮
-:syntax on
+" enable syntax highlighting
+syntax enable
 
 " 配色方案
 colorscheme desert
 
-" 显示行号
+" show line numbers
 set number
-" 突出显示当前行
+" show a visual line under the cursor's current line
 set cursorline
 
 " 设定 << 和 >> 命令移动时的宽度为 4
 set shiftwidth=4
 
-" 设定 tab 长度为 4
+" set tabs to have 4 spaces
 set tabstop=4
 
 
@@ -89,12 +89,18 @@ filetype plugin on    " Enable filetype-specific plugins
 function! SetPythonFile()
 	set omnifunc=pythoncomplete#Complete
 
+	" expand tabs into spaces
 	set expandtab
 	set textwidth=84
 	set tabstop=4
 	set softtabstop=4
 	set shiftwidth=4
+	" indent when moving to the next line while writing code
 	set autoindent
+	" show the matching part of the pair for [] {} and ()
+	set showmatch
+	" enable all Python syntax highlighting features
+	let python_highlight_all = 1
 endfunction
 
 function! SetYamlFile()
