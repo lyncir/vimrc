@@ -1,5 +1,10 @@
+""""""""""""""""""""""""""
+" Load vim plugin manager
+""""""""""""""""""""""""""
+execute pathogen#infect()
+
 """"""""""""""""""""""
-" 基础
+" Base
 """"""""""""""""""""""
 
 " 关闭 vi 兼容模式
@@ -24,7 +29,7 @@ set tabstop=4
 
 
 """""""""""""""""""""""
-" 搜索
+" Search
 """""""""""""""""""""""
 
 " 搜索时忽略大小写
@@ -38,7 +43,7 @@ set hlsearch
 
 
 """""""""""""""""""""""
-" 状态栏
+" Status
 """""""""""""""""""""""
 
 " 显示状态栏 (默认值为 1, 无法显示状态栏)
@@ -74,7 +79,7 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 
 
 """""""""""""""""""""""""""""""
-" 文件类型
+" File type
 """""""""""""""""""""""""""""""
 
 filetype on           " Enable filetype detection
@@ -114,12 +119,6 @@ autocmd FileType python call SetPythonFile()
 autocmd FileType yaml call SetYamlFile()
 
 
-" Pathogen Plugin
-"filetype off
-"call pathogen#runtime_append_all_bundles()
-"call pathogen#incubate()
-"call pathogen#helptags()
-
 """""""""""""""""""""""""""""
 " Window Splits
 """""""""""""""""""""""""""""
@@ -131,36 +130,27 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-
+"""""""""""""""""""""""""""""
+" Plugin config
 """""""""""""""""""""""""""""
 " Task lists
-"""""""""""""""""""""""""""""
 " usage: \td
 map <leader>td <Plug>TaskList
 
-"""""""""""""""""""""""""""""
 " Revision History
-"""""""""""""""""""""""""""""
 " usage: \g
 map <leader>g :GundoToggle<CR>
 
-
-"""""""""""""""""""""""""""""
-" File Browser
-"""""""""""""""""""""""""""""
+" NERD Tree
+" file browser, https://github.com/scrooloose/nerdtree.git
 " usage: \n
 map <leader>n :NERDTreeToggle<CR>
 
-
-"""""""""""""""""""""""""""""
 " Documentation
-"""""""""""""""""""""""""'""
 " pydoc
 " usage: \pw
 
-""""""""""""""""""""""""""""
-" Pep8
-""""""""""""""""""""""""""""
-" install http://github.com/cburroughs/pep8.py 
+" vim-flake8
+" checker: pep8, pyflakes and co. https://github.com/nvie/vim-flake8.git
 " usage: \8
-let g:pep8_map='<leader>8'
+autocmd FileType python map <leader>8 :call Flake8()<CR>
