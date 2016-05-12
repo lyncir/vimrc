@@ -156,7 +156,13 @@ map <leader>n :NERDTreeToggle<CR>
 autocmd FileType python map <leader>8 :call Flake8()<CR>
 
 " Ctrl-p
-" super searching. https://github.com/ctrlpvim/ctrlp.vim
+" super searching file. https://github.com/ctrlpvim/ctrlp.vim
 " usage: ctrl-p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'ra'
+
+" ag
+" the silver searcher. https://github.com/rking/ag.vim.git
+" usage: :Ag [options] {pattern} [{directory}]
+set runtimepath^=~/.vim/bundle/ag.vim
+let g:ag_working_path_mode="r"
