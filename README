@@ -1,2 +1,8 @@
+## required
+
+* flake8
+* the_silver_searcher
+
+
 ln -s vimrc/_.vimrc ~/.vimrc
 ln -s vimrc ~/.vim
