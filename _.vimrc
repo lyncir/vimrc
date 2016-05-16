@@ -27,6 +27,9 @@ set shiftwidth=4
 " set tabs to have 4 spaces
 set tabstop=4
 
+" 回到上次退出的位置
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
 
 """""""""""""""""""""""
 " Search
