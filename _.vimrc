@@ -1,3 +1,6 @@
+" 关闭 vi 兼容模式
+set nocompatible
+
 """"""""""""""""""""""""""
 " Load vim plugin manager
 """"""""""""""""""""""""""
@@ -6,9 +9,6 @@ execute pathogen#infect()
 """"""""""""""""""""""
 " Base
 """"""""""""""""""""""
-
-" 关闭 vi 兼容模式
-set nocompatible
 
 " enable syntax highlighting
 syntax enable
