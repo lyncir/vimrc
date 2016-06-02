@@ -30,6 +30,9 @@ set tabstop=4
 " 回到上次退出的位置
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
+" default copy line number
+set viminfo='50,<1000,s100,h
+
 
 """""""""""""""""""""""
 " Search
