@@ -6,3 +6,5 @@
 
 ln -s vimrc/_.vimrc ~/.vimrc
 ln -s vimrc ~/.vim
+
+git submodule update

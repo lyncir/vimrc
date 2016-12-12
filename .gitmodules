@@ -1,0 +1,15 @@
+[submodule "ag.vim"]
+	path = bundle/ag.vim
+	url = https://github.com/rking/ag.vim.git
+
+[submodule "ctrlp.vim"]
+	path = ls bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
+
+[submodule "nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+
+[submodule "vim-flake8"]
+	path = bundle/vim-flake8
+	url = https://github.com/nvie/vim-flake8.git
