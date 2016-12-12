@@ -13,9 +13,6 @@ execute pathogen#infect()
 " enable syntax highlighting
 syntax enable
 
-" 配色方案
-colorscheme desert
-
 " show line numbers
 set number
 " show a visual line under the cursor's current line
@@ -172,3 +169,26 @@ let g:ctrlp_working_path_mode = 'ra'
 " usage: :Ag [options] {pattern} [{directory}]
 set runtimepath^=~/.vim/bundle/ag.vim
 let g:ag_working_path_mode="r"
+
+" colorschemes
+" https://github.com/flazz/vim-colorschemes.git
+" vim-airline
+" https://github.com/vim-airline/vim-airline
+"colorscheme space-vim-dark
+colorscheme desert
+"colorscheme molokai
+"set background=dark
+"colorscheme solarized
+"let g:airline_theme='violet'
+"let g:Powerline_symbols='fancy'
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#default#layout = [
+" \ [ 'a', 'b', 'c' ],
+" \ [ 'x', 'y', 'z', 'error', 'warning' ]
+" \ ]
+"let g:airline#extensions#tabline#enabled=1
+"let g:airline#extensions#tabline#buffer_nr_show=1
+"if !exists('g:airline_powerline_fonts')
+"	let g:airline_left_sep='>'
+"	let g:airline_right_sep='<'
+"endif
