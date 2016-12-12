@@ -3,7 +3,7 @@
 	url = https://github.com/rking/ag.vim.git
 
 [submodule "ctrlp.vim"]
-	path = ls bundle/ctrlp.vim
+	path = bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 
 [submodule "nerdtree"]
