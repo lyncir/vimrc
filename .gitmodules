@@ -4,7 +4,7 @@
 
 [submodule "ctrlp.vim"]
 	path = ls bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
 
 [submodule "nerdtree"]
 	path = bundle/nerdtree
