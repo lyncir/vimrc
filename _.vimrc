@@ -11,7 +11,7 @@ filetype plugin indent on
 " plug
 call plug#begin()
 Plug 'liuchengxu/space-vim-dark'
-Plug 'liuchengxu/vim-better-default'
+"Plug 'liuchengxu/vim-better-default'
 Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
@@ -187,6 +187,7 @@ let g:ag_working_path_mode="r"
 " vim-airline
 " https://github.com/vim-airline/vim-airline
 color space-vim-dark
+set t_Co=256
 "color gruvbox
 let g:airline_theme='violet'
 let g:Powerline_symbols='fancy'
