@@ -4,7 +4,19 @@ set nocompatible
 """"""""""""""""""""""""""
 " Load vim plugin manager
 """"""""""""""""""""""""""
+" pathogen
 execute pathogen#infect()
+filetype plugin indent on
+
+" plug
+call plug#begin()
+Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/vim-better-default'
+Plug 'morhetz/gruvbox'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
 
 """"""""""""""""""""""
 " Base
@@ -85,9 +97,9 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 " File type
 """""""""""""""""""""""""""""""
 
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
+"filetype on           " Enable filetype detection
+"filetype indent on    " Enable filetype-specific indenting
+"filetype plugin on    " Enable filetype-specific plugins
 
 
 """""""""""""""""""""""""""
@@ -174,21 +186,22 @@ let g:ag_working_path_mode="r"
 " https://github.com/flazz/vim-colorschemes.git
 " vim-airline
 " https://github.com/vim-airline/vim-airline
-"colorscheme space-vim-dark
-colorscheme desert
-"colorscheme molokai
-"set background=dark
-"colorscheme solarized
-"let g:airline_theme='violet'
-"let g:Powerline_symbols='fancy'
-"let g:airline_powerline_fonts=1
-"let g:airline#extensions#default#layout = [
-" \ [ 'a', 'b', 'c' ],
-" \ [ 'x', 'y', 'z', 'error', 'warning' ]
-" \ ]
-"let g:airline#extensions#tabline#enabled=1
-"let g:airline#extensions#tabline#buffer_nr_show=1
-"if !exists('g:airline_powerline_fonts')
-"	let g:airline_left_sep='>'
-"	let g:airline_right_sep='<'
-"endif
+color space-vim-dark
+"color gruvbox
+let g:airline_theme='violet'
+let g:Powerline_symbols='fancy'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#default#layout = [
+ \ [ 'a', 'b', 'c' ],
+ \ [ 'x', 'y', 'z', 'error', 'warning' ]
+ \ ]
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#buffer_nr_show=1
+if !exists('g:airline_powerline_fonts')
+	let g:airline_left_sep='>'
+	let g:airline_right_sep='<'
+endif
+
+" clear key_mapping
+let g:vim_better_default_key_mapping = 0
+
