@@ -186,9 +186,10 @@ let g:ag_working_path_mode="r"
 " https://github.com/flazz/vim-colorschemes.git
 " vim-airline
 " https://github.com/vim-airline/vim-airline
-color space-vim-dark
 set t_Co=256
+set background=dark
 "color gruvbox
+color space-vim-dark
 let g:airline_theme='violet'
 let g:Powerline_symbols='fancy'
 let g:airline_powerline_fonts=1
