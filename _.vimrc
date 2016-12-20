@@ -207,3 +207,10 @@ endif
 " clear key_mapping
 let g:vim_better_default_key_mapping = 0
 
+""""""""""""""""""""
+" key short
+""""""""""""""""""""
+" tabs
+map gt :bn<CR>
+map gT :bp<CR>
+
