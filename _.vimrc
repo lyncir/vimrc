@@ -205,6 +205,12 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
 
+" Surround
+" quoting/partenthesizing made simple https://github.com/tpope/vim-surround
+" Usage see doc
+" cs"' : "Hello world!" -> 'Hello world!'
+" ds" : "Hello world!" -> Hello world!
+
 " colorschemes
 " https://github.com/flazz/vim-colorschemes.git
 " vim-airline
