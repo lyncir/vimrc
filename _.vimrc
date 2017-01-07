@@ -215,6 +215,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
+" disable style checking
+"let g:syntastic_quiet_messages = {"type": "style"}
 
 " Surround
 " quoting/partenthesizing made simple https://github.com/tpope/vim-surround
@@ -225,7 +227,7 @@ let g:syntastic_python_checkers = ['flake8']
 
 " Tagbar
 " A class outline viewer https://github.com/majutsushi/tagbar
-" Usage: F8
+" Usage: Ctrl-l
 map <C-l> :TagbarToggle<CR>
 
 
