@@ -2,6 +2,7 @@
 
 * flake8
 * the_silver_searcher
+* ctags > 5.5
 
 
 ln -s vimrc/_.vimrc ~/.vimrc

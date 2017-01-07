@@ -154,13 +154,15 @@ map <c-h> <c-w>h
 " usage: \td
 map <leader>td <Plug>TaskList
 
+
 " Revision History
 " usage: \g
 map <leader>g :GundoToggle<CR>
 
+
 " NERD Tree
 " file browser, https://github.com/scrooloose/nerdtree.git
-" usage: \n
+" usage: Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 " open a NERDTree automatically when vim starts up if no files were specified
@@ -171,14 +173,11 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
-" Documentation
-" pydoc
-" usage: \pw
-
 " vim-flake8
 " checker: pep8, pyflakes and co. https://github.com/nvie/vim-flake8.git
 " usage: \8
 autocmd FileType python map <leader>8 :call Flake8()<CR>
+
 
 " Ctrl-p
 " super searching file. https://github.com/ctrlpvim/ctrlp.vim
@@ -188,18 +187,19 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
 			\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 			\ 'file': '\v\.(exe|so|dll)$',
 			\ 'link': 'some_bad_symbolic_links',
 			\ }
 
+
 " ag
 " the silver searcher. https://github.com/rking/ag.vim.git
 " usage: :Ag [options] {pattern} [{directory}]
 set runtimepath^=~/.vim/bundle/ag.vim
 let g:ag_working_path_mode="r"
+
 
 " Syntastic
 " syntax checking plugin https://github.com/vim-syntastic/syntastic.git
@@ -219,6 +219,12 @@ let g:syntastic_python_checkers = ['flake8']
 " Usage see doc
 " cs"' : "Hello world!" -> 'Hello world!'
 " ds" : "Hello world!" -> Hello world!
+
+
+" Tagbar
+" A class outline viewer https://github.com/majutsushi/tagbar
+" Usage: F8
+map <C-l> :TagbarToggle<CR>
 
 " colorschemes
 " https://github.com/flazz/vim-colorschemes.git
@@ -241,6 +247,7 @@ if !exists('g:airline_powerline_fonts')
 	let g:airline_left_sep='>'
 	let g:airline_right_sep='<'
 endif
+
 
 " clear key_mapping
 let g:vim_better_default_key_mapping = 0
