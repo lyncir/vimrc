@@ -29,6 +29,8 @@ syntax enable
 
 " show line numbers
 set number
+" relative line numbers
+set relativenumber
 " show a visual line under the cursor's current line
 set cursorline
 
@@ -225,6 +227,13 @@ let g:syntastic_python_checkers = ['flake8']
 " A class outline viewer https://github.com/majutsushi/tagbar
 " Usage: F8
 map <C-l> :TagbarToggle<CR>
+
+
+" NERD Commenter
+" comment https://github.com/scrooloose/nerdcommenter
+" default mappings
+" [count]<leader>c<space>
+
 
 " colorschemes
 " https://github.com/flazz/vim-colorschemes.git
