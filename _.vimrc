@@ -178,7 +178,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " vim-flake8
 " checker: pep8, pyflakes and co. https://github.com/nvie/vim-flake8.git
 " usage: \8
-autocmd FileType python map <leader>8 :call Flake8()<CR>
+"autocmd FileType python map <leader>8 :call Flake8()<CR>
 
 
 " Ctrl-p
@@ -216,7 +216,9 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
 " disable style checking
-let g:syntastic_quiet_messages = {"type": "style"}
+"let g:syntastic_quiet_messages = {"type": "style"}
+map <leader>8 :SyntasticToggleMode<CR>
+
 
 " Surround
 " quoting/partenthesizing made simple https://github.com/tpope/vim-surround
