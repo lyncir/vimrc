@@ -237,6 +237,7 @@ map <leader>b :TagbarToggle<CR>
 " comment https://github.com/scrooloose/nerdcommenter
 " default mappings
 " [count]<leader>c<space>
+let g:NERDDefaultAlign = 'left'
 
 
 " colorschemes
