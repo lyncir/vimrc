@@ -46,6 +46,9 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 " default copy line number
 set viminfo='50,<1000,s100,h
 
+" display color number
+set cc=79
+
 
 """""""""""""""""""""""
 " Search
