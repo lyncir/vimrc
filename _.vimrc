@@ -215,6 +215,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
+" disable python flake8 line to long error check
+let g:syntastic_python_flake8_args = "--ignore=E501"
 " disable style checking
 "let g:syntastic_quiet_messages = {"type": "style"}
 map <leader>8 :SyntasticToggleMode<CR>
