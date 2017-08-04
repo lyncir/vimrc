@@ -25,3 +25,6 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule "bundle/TaskList.vim"]
+	path = bundle/TaskList.vim
+	url = git@github.com:vim-scripts/TaskList.vim.git

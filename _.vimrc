@@ -280,6 +280,10 @@ map gT :bp<CR>
 " Usage: F5
 :nnoremap <F5> :buffers<CR>:buffer<Space>
 
-" todo
+" TaskList
+" git@github.com:vim-scripts/TaskList.vim.git
 " Usage: \t
-:noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
+let g:tlTokenList = ["FIXME", "TODO", "HACK", "NOTE", "WARN", "MODIFY"]
+let g:tlWindowPosition = 1
+map <leader>t :TaskList<CR>
+"noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
