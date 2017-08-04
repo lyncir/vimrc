@@ -49,7 +49,6 @@ set viminfo='50,<1000,s100,h
 " display color number
 set cc=79
 
-
 """""""""""""""""""""""
 " Search
 """""""""""""""""""""""
@@ -280,3 +279,7 @@ map gT :bp<CR>
 
 " Usage: F5
 :nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" todo
+" Usage: \t
+:noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
