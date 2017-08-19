@@ -242,6 +242,7 @@ map <leader>b :TagbarToggle<CR>
 " default mappings
 " [count]<leader>c<space>
 let g:NERDDefaultAlign = 'left'
+let NERDTreeIgnore = ['\.pyc$']
 
 
 " colorschemes
@@ -283,7 +284,7 @@ map gT :bp<CR>
 " TaskList
 " git@github.com:vim-scripts/TaskList.vim.git
 " Usage: \t
-let g:tlTokenList = ["FIXME", "TODO", "HACK", "NOTE", "WARN", "MODIFY"]
+let g:tlTokenList = ["FIXME", "TODO", "NOTE"]
 let g:tlWindowPosition = 1
 map <leader>t :TaskList<CR>
 "noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
