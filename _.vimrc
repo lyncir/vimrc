@@ -288,3 +288,35 @@ let g:tlTokenList = ["FIXME", "TODO", "NOTE"]
 let g:tlWindowPosition = 1
 map <leader>t :TaskList<CR>
 "noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.py<CR>:cw<CR>
+
+
+
+""""""""""""""""""""""""
+" add python file header
+""""""""""""""""""""""""
+let g:header_field_author = 'lyncir'
+
+autocmd bufnewfile *.py so /home/lyncir/.vim/py_header.txt
+autocmd bufnewfile *.py ks|call NewCreate()|'s
+fun NewCreate()
+  if line("$") > 20
+    let l = 20
+  else
+    let l = line("$")
+  endif
+  exe "1," . l . "g/:create by:/s/:create by:.*/:create by: " . g:header_field_author
+  exe "1," . l . "g/:date:/s/:date:.*/:date: " . strftime("%Y-%m-%d %H:%M:%S (%z)")
+endfun
+
+autocmd Bufwritepre,filewritepre *.py ks|call LastMod()|'s
+fun LastMod()
+  if line("$") > 20
+    let l = 20
+  else
+    let l = line("$")
+  endif
+  exe "1," . l . "g/:last modified date:/s/:last modified date:.*/:last modified date: " .
+  \ strftime("%Y-%m-%d %H:%M:%S (%z)")
+  exe "1," . l . "g/:last modified by:/s/:last modified by:.*/:last modified by: " .
+  \ g:header_field_author
+endfun
