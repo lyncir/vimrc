@@ -308,6 +308,8 @@ fun NewCreate()
   exe "1," . l . "g/:date:/s/:date:.*/:date: " . strftime("%Y-%m-%d %H:%M:%S (%z)")
 endfun
 
+" 游标返回
+autocmd Bufwritepre,filewritepre *.py execute "normal ma"
 autocmd Bufwritepre,filewritepre *.py ks|call LastMod()|'s
 fun LastMod()
   if line("$") > 20
@@ -320,3 +322,5 @@ fun LastMod()
   exe "1," . l . "g/:last modified by:/s/:last modified by:.*/:last modified by: " .
   \ g:header_field_author
 endfun
+" 游标返回
+autocmd bufwritepost,filewritepost *.py execute "normal `a"
