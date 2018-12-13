@@ -324,3 +324,6 @@ fun LastMod()
 endfun
 " 游标返回
 autocmd bufwritepost,filewritepost *.py execute "normal `a"
+
+" 设置背景透明(放到最后)
+hi Normal  ctermfg=252 ctermbg=none
