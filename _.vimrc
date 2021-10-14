@@ -17,6 +17,10 @@ Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mileszs/ack.vim'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
@@ -201,8 +205,8 @@ let g:ctrlp_custom_ignore = {
 " ag
 " the silver searcher. https://github.com/rking/ag.vim.git
 " usage: :Ag [options] {pattern} [{directory}]
-set runtimepath^=~/.vim/bundle/ag.vim
-let g:ag_working_path_mode="r"
+"set runtimepath^=~/.vim/bundle/ag.vim
+"let g:ag_working_path_mode="r"
 
 
 " Syntastic
@@ -310,20 +314,21 @@ endfun
 
 " 游标返回
 autocmd Bufwritepre,filewritepre *.py execute "normal ma"
-autocmd Bufwritepre,filewritepre *.py ks|call LastMod()|'s
-fun LastMod()
-  if line("$") > 20
-    let l = 20
-  else
-    let l = line("$")
-  endif
-  exe "1," . l . "g/:last modified date:/s/:last modified date:.*/:last modified date: " .
-  \ strftime("%Y-%m-%d %H:%M:%S (%z)")
-  exe "1," . l . "g/:last modified by:/s/:last modified by:.*/:last modified by: " .
-  \ g:header_field_author
-endfun
-" 游标返回
-autocmd bufwritepost,filewritepost *.py execute "normal `a"
+
+"autocmd Bufwritepre,filewritepre *.py ks|call LastMod()|'s
+"fun LastMod()
+"  if line("$") > 50
+"    let l = 50
+"  else
+"    let l = line("$")
+"  endif
+"  exe "1," . l . "g/:last modified date:/s/:last modified date:.*/:last modified date: " .
+"  \ strftime("%Y-%m-%d %H:%M:%S (%z)")
+"  exe "1," . l . "g/:last modified by:/s/:last modified by:.*/:last modified by: " .
+"  \ g:header_field_author
+"endfun
+"" 游标返回
+"autocmd bufwritepost,filewritepost *.py execute "normal `a"
 
 " 设置背景透明(放到最后)
 hi Normal  ctermfg=252 ctermbg=none
