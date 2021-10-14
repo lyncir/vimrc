@@ -21,6 +21,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mileszs/ack.vim'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
+Plug 'rking/ag.vim'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
@@ -205,8 +206,8 @@ let g:ctrlp_custom_ignore = {
 " ag
 " the silver searcher. https://github.com/rking/ag.vim.git
 " usage: :Ag [options] {pattern} [{directory}]
-"set runtimepath^=~/.vim/bundle/ag.vim
-"let g:ag_working_path_mode="r"
+set runtimepath^=~/.vim/bundle/ag.vim
+let g:ag_working_path_mode="r"
 
 
 " Syntastic
