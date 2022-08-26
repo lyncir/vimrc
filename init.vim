@@ -2,8 +2,8 @@
 " 基础
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 关闭 vi 兼容模式
-set nocompatible
-set backspace=indent,eol,start
+"set nocompatible
+"set backspace=indent,eol,start
 
 " 开启语法高亮
 syntax enable
@@ -19,10 +19,10 @@ set cursorline
 set cc=79
 
 " 设定 << 和 >> 命令移动时的宽度为 4
-"set shiftwidth=4
+set shiftwidth=4
 
 " 设置tab为4个空格
-"set tabstop=4
+set tabstop=4
 
 """"""""
 " 搜索
@@ -73,7 +73,9 @@ Plug 'farmergreg/vim-lastplace'
 " 突出光标下的单词及其所有出现
 Plug 'dominikduda/vim_current_word'
 " 缩进提示
-Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'Yggdroot/indentLine'
+" 对齐
+Plug 'junegunn/vim-easy-align'
 
 
 " 自动补全
@@ -82,7 +84,14 @@ Plug 'neovim/nvim-lspconfig'
 "A good completion plugin
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-omni'
 Plug 'hrsh7th/nvim-cmp'
+
+" For vsnip users.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 
 " 语言相关
@@ -207,88 +216,127 @@ let g:Lf_UseVersionControlTool = 0
 " 使用LeaderF的bufTag
 noremap <leader>b :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 
+"""""""
+" 对齐
+"""""""
+" usage: markdowm 表格对其 gaip*|
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 """"""""""""""
 " 自动补全
 """""""""""""
 set completeopt=menu,menuone,noselect
 
 lua << EOF
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- Setup lsp installer
+  require("nvim-lsp-installer").setup {}
+  
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+  
+  cmp.setup({
+  
+    -- 指定 snippet 引擎
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        end,
+    },
+  
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+  
+    -- 快捷键
+    mapping = cmp.mapping.preset.insert({
+      -- 上一个
+  	  --['<C-k>'] = cmp.mapping.select_prev_item(),
+        -- 下一个
+  	  --['<C-j>'] = cmp.mapping.select_next_item(),
+      -- 出现补全
+      -- 取消
+  	  ['<C-e>'] = cmp.mapping.abort(),
+        -- 确认
+      ['<CR>'] = cmp.mapping.confirm({
+        select = true,
+        behavior = cmp.ConfirmBehavior.Replace
+      }),
+  	  ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+  	  ['<C-f>'] = cmp.mapping.scroll_docs(4),
+  	  ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif vim.fn["vsnip#available"](1) == 1 then
+          feedkey("<Plug>(vsnip-expand-or-jump)", "")
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        end
+      end, { "i", "s" }),
+  	  ["<S-Tab>"] = cmp.mapping(function()
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+          feedkey("<Plug>(vsnip-jump-prev)", "")
+        end
+      end, { "i", "s" }),
+    }),
+  
+    -- 来源
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      -- For vsnip users.
+      { name = 'vsnip' },
+    }, {
+      { name = 'buffer' },
+      { name = 'path' },
+    })
+  })
+  
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+  
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+  
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  
+  require('lspconfig')['pyright'].setup{
+    capabilities = capabilities,
+  }
+  require('lspconfig')['html'].setup{
+    capabilities = capabilities,
+  }
+  require('lspconfig')['cssls'].setup{
+    capabilities = capabilities,
+  }
+  require'lspconfig'.gdscript.setup{
+    capabilities = capabilities,
+  }
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-end
-
--- Setup lsp installer
-require("nvim-lsp-installer").setup {}
-
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-
-require('lspconfig')['pyright'].setup{
-  on_attach = on_attach,
-}
-require('lspconfig')['html'].setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-require('lspconfig')['cssls'].setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-require'lspconfig'.gdscript.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
--- Setup nvim-cmp.
-local cmp = require'cmp'
-
-cmp.setup({
-  -- Supertab-like completion.
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }),
-
-  -- Groups of sources.
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-  }),
-})
 EOF
 
 

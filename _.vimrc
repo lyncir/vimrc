@@ -141,26 +141,23 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'dominikduda/vim_current_word'
 " 缩进提示(对齐线)
 Plug 'Yggdroot/indentLine'
+" 对齐
+Plug 'junegunn/vim-easy-align'
 
 
 " 自动补全
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-
-Plug 'davidhalter/jedi-vim'
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim'
+"Plug 'dense-analysis/ale'
 
 
 " 语言相关
 " python
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'vim-syntastic/syntastic'
-Plug 'nvie/vim-flake8'
+"Plug 'Vimjas/vim-python-pep8-indent'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'nvie/vim-flake8'
 
 " Godot
-Plug 'habamax/vim-godot'
+"Plug 'habamax/vim-godot'
 
 call plug#end()
 
@@ -277,32 +274,30 @@ let g:Lf_UseVersionControlTool = 0
 noremap <leader>b :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 
 
+"""""""
+" 对齐
+"""""""
+" usage: markdowm 表格对其 gaip*|
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
 """"""""""""""
 " 自动补全
 """""""""""""
-let g:deoplete#enable_at_startup = 1
+" nodejs: curl -sL install-node.vercel.app/lts | sudo bash
+" npm: curl -L https://npmjs.org/install.sh | sudo sh 
+" npm install yarn
+" cd coc.vim && yarn install && yarn build
+" 安装拓展 :CocInstall coc-pyright
 
+" ALE
+"let g:ale_open_list = 1
+"let g:ale_virtualtext_cursor = 0
 
-""""""""
-" Pthon	
-""""""""
-" syntastic
-" https://github.com/vim-syntastic/syntastic.git
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['flake8']
-" disable python flake8 line to long error check
-let g:syntastic_python_flake8_args = "--ignore=E501,E402,W503"
-" disable style checking
-"let g:syntastic_quiet_messages = {"type": "style"}
-map <leader>8 :SyntasticToggleMode<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
